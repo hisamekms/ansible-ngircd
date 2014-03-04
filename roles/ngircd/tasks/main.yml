@@ -1,0 +1,9 @@
+---
+- name: install ngIRCd
+  yum: name=ngircd.x86_64 state=latest
+
+- name: open tcp port
+  lineinfile: dest=/etc/sysconfig/iptables state=present
+    insertafter="^:OUTPUT"
+    line="-A INPUT -m state --state NEW -m tcp -p tcp --dport 6667 -j ACCEPT"
+    notify=restart iptables

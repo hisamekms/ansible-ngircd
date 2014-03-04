@@ -1,0 +1,6 @@
+---
+- name: Install ngIRCd
+  hosts: irc
+  user: root
+  roles:
+    - ngircd
